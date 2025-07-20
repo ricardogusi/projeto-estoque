@@ -21,7 +21,7 @@ public class ProdutoDTO {
     private String descricao;
 
     @NotNull
-    private Long categoriaId;
+    private Long tipoProdutoId;
 
     @NotNull
     private Long fornecedorId;

@@ -1,26 +1,26 @@
 package br.com.estoque.Estoque.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import br.com.estoque.Estoque.model.Produto;
 import java.math.BigDecimal;
 
-@Setter
-@Getter
-public class ProdutoResponseDTO {
-
-    private Long id;
-    private String codigo;
-    private String descricao;
-
-    private String categoria;
-    private String fornecedor;
-
-    private BigDecimal valorFornecedor;
-    private Integer quantidadeEstoque;
-
-    private Integer totalSaidas;
-    private BigDecimal lucroEstimado;
-
+public record ProdutoResponseDTO(
+        Long id,
+        String codigo,
+        String descricao,
+        String tipoProdutoDescricao,
+        String fornecedorNome,
+        BigDecimal valorFornecedor,
+        Integer quantidadeEstoque
+) {
+    public ProdutoResponseDTO(Produto p) {
+        this(
+                p.getId(),
+                p.getCodigo(),
+                p.getDescricao(),
+                p.getTipoProduto() != null ? p.getTipoProduto().getDescricao() : null,
+                p.getFornecedor() != null ? p.getFornecedor().getNome() : null,
+                p.getValorFornecedor(),
+                p.getQuantidadeEstoque()
+        );
+    }
 }
-
