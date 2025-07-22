@@ -22,12 +22,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto atualizar(final Long id, final Produto novo) {
-        final Produto antigo = buscar(id);
-        antigo.setDescricao(novo.getDescricao());
-        antigo.setTipoProduto(novo.getTipoProduto());
-        antigo.setFornecedor(novo.getFornecedor());
-        antigo.setValorFornecedor(novo.getValorFornecedor());
-        return produtoRepository.save(antigo);
+        final Produto produtoParaAtualizar = buscar(id);
+        produtoParaAtualizar.setDescricao(novo.getDescricao());
+        produtoParaAtualizar.setTipoProduto(novo.getTipoProduto());
+        produtoParaAtualizar.setFornecedor(novo.getFornecedor());
+        produtoParaAtualizar.setValorFornecedor(novo.getValorFornecedor());
+        produtoParaAtualizar.setQuantidadeEstoque(novo.getQuantidadeEstoque());
+        return produtoRepository.save(produtoParaAtualizar);
     }
 
     @Override

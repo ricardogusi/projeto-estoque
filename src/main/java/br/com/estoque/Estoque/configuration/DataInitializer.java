@@ -12,8 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class DataInitializer {
 
     @Bean
-    CommandLineRunner initDatabase(TipoProdutoRepository tipoProdutoRepo,
-                                   FornecedorRepository fornecedorRepo) {
+    CommandLineRunner initDatabase(final TipoProdutoRepository tipoProdutoRepo, final FornecedorRepository fornecedorRepository) {
         return args -> {
             if (tipoProdutoRepo.count() == 0) {
                 tipoProdutoRepo.save(new TipoProduto(null, "Eletrônico", "Produtos do setor eletrônico"));
@@ -21,9 +20,9 @@ public class DataInitializer {
                 tipoProdutoRepo.save(new TipoProduto(null, "Móvel", "Produtos do setor móvel"));
             }
 
-            if (fornecedorRepo.count() == 0) {
-                fornecedorRepo.save(new Fornecedor(null, "Fornecedor A"));
-                fornecedorRepo.save(new Fornecedor(null, "Fornecedor B"));
+            if (fornecedorRepository.count() == 0) {
+                fornecedorRepository.save(new Fornecedor(null, "Fornecedor A"));
+                fornecedorRepository.save(new Fornecedor(null, "Fornecedor B"));
             }
         };
     }

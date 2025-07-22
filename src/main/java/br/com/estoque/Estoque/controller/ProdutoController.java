@@ -45,7 +45,7 @@ public class ProdutoController {
 
     @PutMapping("/{id}")
     public Produto atualizar(@PathVariable final Long id, @RequestBody @Valid final ProdutoDTO dto) {
-        Produto produto = montarProdutoAPartirDoDTO(dto);
+        final Produto produto = montarProdutoAPartirDoDTO(dto);
         return produtoService.atualizar(id, produto);
     }
 
@@ -54,14 +54,14 @@ public class ProdutoController {
         produtoService.deletar(id);
     }
 
-    private Produto montarProdutoAPartirDoDTO(ProdutoDTO dto) {
-        Produto produto = new Produto();
+    private Produto montarProdutoAPartirDoDTO(final ProdutoDTO dto) {
+        final Produto produto = new Produto();
         produto.setCodigo(dto.getCodigo());
         produto.setDescricao(dto.getDescricao());
         produto.setValorFornecedor(dto.getValorFornecedor());
         produto.setQuantidadeEstoque(dto.getQuantidadeEstoque());
 
-        TipoProduto tipoProduto = tipoProdutoRepository.findById(dto.getTipoProdutoId())
+        final TipoProduto tipoProduto = tipoProdutoRepository.findById(dto.getTipoProdutoId())
                 .orElseThrow(() -> new RecursoNaoEncontradoException("TipoProduto não encontrado"));
         produto.setTipoProduto(tipoProduto);
 
@@ -70,7 +70,6 @@ public class ProdutoController {
                     .orElseThrow(() -> new RecursoNaoEncontradoException("Fornecedor não encontrado"));
             produto.setFornecedor(fornecedor);
         }
-
         return produto;
     }
 }

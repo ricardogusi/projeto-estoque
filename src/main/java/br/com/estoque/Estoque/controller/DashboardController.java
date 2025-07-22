@@ -14,8 +14,8 @@ public class DashboardController {
 
     private final MovimentacaoEstoqueRepository movimentacaoEstoqueRepository;
 
-    public DashboardController(MovimentacaoEstoqueRepository repo) {
-        this.movimentacaoEstoqueRepository = repo;
+    public DashboardController(final MovimentacaoEstoqueRepository movimentacaoEstoqueRepository) {
+        this.movimentacaoEstoqueRepository = movimentacaoEstoqueRepository;
     }
 
     @GetMapping("/lucro")
